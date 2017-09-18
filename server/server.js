@@ -1,7 +1,4 @@
-var mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/TodoApp');
+var mongoose = require('./db/mongoose');
 
 var Todo = mongoose.model('Todo', {
   text: {
@@ -20,6 +17,15 @@ var Todo = mongoose.model('Todo', {
   }
 });
 
+var User = mongoose.model('User', {
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1
+  }
+});
+
 // var otherTodo = new Todo({
 //   text: 'Something to do'
 // });
@@ -32,14 +38,7 @@ var Todo = mongoose.model('Todo', {
 
 // User
 // email - require it - trim it - set type - set min length of 1
-var User = mongoose.model('User', {
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 1
-  }
-});
+
 
 var user = new User({
   email: 'andrew@example.com   '
